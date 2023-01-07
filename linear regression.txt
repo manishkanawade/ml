@@ -1,0 +1,34 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import datasets
+
+df=pd.read_csv("house.csv")
+df
+
+new_df=df.drop('price',axis='columns')
+new_df
+
+from sklearn.linear_model import LinearRegression
+
+model=LinearRegression()
+
+model.fit(new_df,df.price)
+
+y_pred=model.predict(new_df)
+y_pred
+
+plt.xlabel("area")
+plt.ylabel("price")
+plt.scatter(df.area,df.price,color='red')
+plt.plot(new_df,model.predict(new_df),color='blue')
+
+model.predict([[3300]])
+
+model.predict([[5000]])
+
+model.coef_
+
+model.intercept_
+
+model.predict([[3300]])
