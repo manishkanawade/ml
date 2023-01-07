@@ -1,0 +1,31 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import datasets
+
+df=pd.read_csv("position_sal.csv")
+df
+
+x=df.iloc[:,1:2].values
+y=df.iloc[:,2].values
+x
+
+y
+
+plt.scatter(x,y,color='red')
+
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression 
+
+poly=PolynomialFeatures(degree=4)
+x_poly=poly.fit_transform(x)
+
+pilreg=LinearRegression()
+pilreg.fit(x_poly,y)
+
+y_pred = pilreg.predict(x_poly)
+
+plt.scatter(x,y,color='red')
+plt.plot(x,y_pred,color='blue')
+
+pilreg.predict(poly.fit_transform([[10]]))
