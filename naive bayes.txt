@@ -1,0 +1,50 @@
+import pandas as pd
+import numpy as np
+import seaborn as sb
+import matplotlib.pyplot as plt
+
+data = sb.load_dataset("titanic")
+
+data
+
+data = data.drop(["embarked", "class", "who", "adult_male", "deck", "embark_town", "alive" ,"alone", "parch", "sibsp"], axis="columns")
+
+data
+
+X = data.drop("survived", axis = "columns")
+y = data.survived
+
+dummies = pd.get_dummies(X.sex)
+dummies
+
+X = pd.concat([X, dummies], axis = "columns")
+
+X
+
+X = X.drop(["sex", "male"], axis="columns")
+
+X.head(10)
+
+X.isna().any()
+
+X.age = X.age.fillna(X.age.mean())
+
+X.head(10)
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+X_train.shape, X_test.shape
+
+# from sklearn.naive_bayes import MultinomialNB
+from sklearn.naive_bayes import GaussianNB
+reg = GaussianNB()
+reg.fit(X_train, y_train)
+
+reg.score(X_test, y_test)
+
+reg.predict(X_test)
+
+y_test
+
+from sklearn.
