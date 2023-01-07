@@ -1,0 +1,16 @@
+import pandas as pd
+import numpy as np
+
+data = pd.read_csv("student.csv")
+
+data
+
+dummies = pd.get_dummies(data.Education)
+
+dummies
+
+pd.concat([data, dummies], axis = "columns")
+
+data['Education'].replace(["MSc(Comp)", "Msc(Chem)"], [100, 200], inplace = True)
+
+data
