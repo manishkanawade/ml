@@ -1,0 +1,33 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+data=pd.read_csv("Student.csv")
+
+data
+
+data.isnull()
+
+data.isnull().sum()
+
+data.dropna()
+
+data.fillna(0)
+
+data.fillna(method="pad")
+
+data.fillna(method="backfill")
+
+data.fillna(method="bfill")
+
+data['Percentage'].fillna(data['Percentage'].mean())
+
+data['Percentage'].fillna(data['Percentage'].median())
+
+data
+
+data['Education'].fillna(data['Education'].mode()[0])
+
+data['Education'].mode()
+
+data
